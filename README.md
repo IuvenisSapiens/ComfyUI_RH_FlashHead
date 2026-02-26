@@ -153,6 +153,7 @@ This project is licensed under the [Apache License 2.0](LICENSE).
 
 ## 🔗 Links
 
+- [RunningHub](https://www.runninghub.cn)
 - [SoulX-FlashHead (Original Project)](https://github.com/Soul-AILab/SoulX-FlashHead)
 - [SoulX-FlashHead Technical Report (arXiv)](https://arxiv.org/abs/2602.07449)
 - [SoulX-FlashHead-1_3B Model](https://huggingface.co/Soul-AILab/SoulX-FlashHead-1_3B)
