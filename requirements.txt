@@ -1,0 +1,14 @@
+optimum-quanto
+imageio
+imageio-ffmpeg
+librosa
+loguru
+Pillow
+av
+PyYAML
+einops
+transformers
+mediapipe
+diffusers
+pyloudnorm
+numpy

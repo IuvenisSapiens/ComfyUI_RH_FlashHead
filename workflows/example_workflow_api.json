@@ -1,0 +1,69 @@
+{
+  "2": {
+    "inputs": {
+      "seed": 418540926183964,
+      "width": 512,
+      "height": 512,
+      "pipeline": [
+        "6",
+        0
+      ],
+      "ref_audio": [
+        "3",
+        0
+      ],
+      "avatar_image": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "RunningHub SoulX-FlashHead Sampler",
+    "_meta": {
+      "title": "RunningHub SoulX-FlashHead Sampler"
+    }
+  },
+  "3": {
+    "inputs": {
+      "audio": "your_audio.wav",
+      "audioUI": ""
+    },
+    "class_type": "LoadAudio",
+    "_meta": {
+      "title": "Load Audio"
+    }
+  },
+  "4": {
+    "inputs": {
+      "image": "your_image.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "5": {
+    "inputs": {
+      "filename_prefix": "video/ComfyUI",
+      "format": "auto",
+      "codec": "auto",
+      "fw_video_preview": "",
+      "video": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "SaveVideo",
+    "_meta": {
+      "title": "💾 Save Video"
+    }
+  },
+  "6": {
+    "inputs": {
+      "model_type": "lite"
+    },
+    "class_type": "RunningHub SoulX-FlashHead Loader",
+    "_meta": {
+      "title": "RunningHub SoulX-FlashHead Loader"
+    }
+  }
+}
