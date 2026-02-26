@@ -36,7 +36,7 @@ class RunningHub_FlashHead_Loader:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "model_type": (["pro", "lite"], {"default": "pro"}),
+                "model_type": (["pro", "lite"], {"default": "lite"}),
             }
         }
 
