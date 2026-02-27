@@ -6,21 +6,17 @@ try:
 except ImportError:
     VideoFromFile = None
 from pathlib import Path
-from optimum.quanto import freeze, qint8, quantize 
 import uuid
 
 import os
 import numpy as np
 import time
 import torch
-import torch.distributed as dist
 import subprocess
 import imageio
 import librosa
-import numpy as np
 from loguru import logger
 from collections import deque
-from datetime import datetime
 from PIL import Image
 import io
 import av
@@ -117,7 +113,7 @@ class RunningHub_FlashHead_Sampler:
                 for i in range(frames.shape[0]):
                     frame = frames[i, :, :, :]
                     writer.append_data(frame)
-        
+
         # merge video and audio
         # cmd = ['ffmpeg', '-i', temp_video_path, '-i', audio_path, '-c', 'copy', '-shortest', video_path, '-y']
         cmd = ['ffmpeg', '-i', temp_video_path, '-i', audio_path, '-c:v', 'copy', '-c:a', 'aac', '-shortest', video_path, '-y']
@@ -185,7 +181,11 @@ class RunningHub_FlashHead_Sampler:
         audio_dq = deque([0.0] * cached_audio_length_sum, maxlen=cached_audio_length_sum)
 
         human_speech_array_slice_len = slice_len * sample_rate // tgt_fps
-        human_speech_array_slices = human_speech_array_all[:(len(human_speech_array_all)//(human_speech_array_slice_len))*human_speech_array_slice_len].reshape(-1, human_speech_array_slice_len)
+        # pad the last segment of audio
+        pad_len = human_speech_array_slice_len - (len(human_speech_array_all) % human_speech_array_slice_len)
+        if pad_len != human_speech_array_slice_len:
+            human_speech_array_all = np.pad(human_speech_array_all, (0, pad_len), mode='constant')
+        human_speech_array_slices = human_speech_array_all.reshape(-1, human_speech_array_slice_len)
 
         generated_list = []
         chunk_num = len(human_speech_array_slices)

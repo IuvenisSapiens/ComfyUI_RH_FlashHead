@@ -8,7 +8,6 @@ import torch.distributed as dist
 import subprocess
 import imageio
 import librosa
-import numpy as np
 from loguru import logger
 from collections import deque
 from datetime import datetime
@@ -96,7 +95,7 @@ def save_video(frames_list, video_path, audio_path, fps):
             for i in range(frames.shape[0]):
                 frame = frames[i, :, :, :]
                 writer.append_data(frame)
-    
+
     # merge video and audio
     cmd = ['ffmpeg', '-i', temp_video_path, '-i', audio_path, '-c:v', 'copy', '-c:a', 'aac', '-shortest', video_path, '-y']
     subprocess.run(cmd)
